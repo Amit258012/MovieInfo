@@ -1,10 +1,16 @@
-/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-// import fetchDataFromApi from "./utils/fetchDataFromApi";
 import fetchDataFromApi from "./utils/api";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getApiConfiguration } from "./store/homeSlice";
+
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import Home from "./pages/home/Home";
+import Details from "./pages/details/Details";
+import SearchResults from "./pages/SearchResults/SearchResults";
+import Explore from "./pages/Explore/Explore";
+import PageNotFound from "./pages/404/PageNotFound";
 
 function App() {
 	const dispatch = useDispatch();
