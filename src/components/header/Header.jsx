@@ -9,39 +9,6 @@ import "./style.scss";
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 import logo from "../../assets/movix-logo.svg";
 
-useEffect(() => {
-	window.scrollTo(0, 0);
-}, [location]);
-
-const controlNavbar = () => {
-	if (window.scrollY > 200) {
-		if (window.scrollY > lastScrollY && !mobileMenu) {
-			setShow("hide");
-		} else {
-			setShow("show");
-		}
-	} else {
-		setShow("top");
-	}
-	setLastScrollY(lastScrollY);
-};
-
-useEffect(() => {
-	window.addEventListener("scroll", controlNavbar);
-	return () => {
-		window.removeEventListener("scroll", controlNavbar);
-	};
-}, [lastScrollY]);
-
-const searchQueryHandler = (event) => {
-	if (event.key === "Enter" && query.length > 0) {
-		navigate(`/search/${query}`);
-		setTimeout(() => {
-			setShowSearch(false);
-		}, 1000);
-	}
-};
-
 const Header = () => {
 	const [show, setShow] = useState("top");
 	const [lastScrollY, setLastScrollY] = useState(0);
@@ -50,6 +17,39 @@ const Header = () => {
 	const [showSearch, setShowSearch] = useState("");
 	const navigate = useNavigate();
 	const location = useLocation();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [location]);
+
+	const controlNavbar = () => {
+		if (window.scrollY > 200) {
+			if (window.scrollY > lastScrollY && !mobileMenu) {
+				setShow("hide");
+			} else {
+				setShow("show");
+			}
+		} else {
+			setShow("top");
+		}
+		setLastScrollY(lastScrollY);
+	};
+
+	useEffect(() => {
+		window.addEventListener("scroll", controlNavbar);
+		return () => {
+			window.removeEventListener("scroll", controlNavbar);
+		};
+	}, [lastScrollY]);
+
+	const searchQueryHandler = (event) => {
+		if (event.key === "Enter" && query.length > 0) {
+			navigate(`/search/${query}`);
+			setTimeout(() => {
+				setShowSearch(false);
+			}, 1000);
+		}
+	};
 
 	const openSearch = () => {
 		setMobileMenu(false);
@@ -61,6 +61,9 @@ const Header = () => {
 	};
 
 	const navigationHandler = (type) => {
+		// if (type === "/") {
+		// 	navigate("/");
+		// }
 		if (type === "movie") {
 			navigate("explore/movie");
 		} else {
@@ -72,7 +75,7 @@ const Header = () => {
 	return (
 		<header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
 			<ContentWrapper>
-				<div className="logo">
+				<div className="logo" onClick={() => navigate(-1)}>
 					<img src={logo} alt="movix info logo" />
 				</div>
 				<ul className="menuItems">
