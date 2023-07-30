@@ -3,6 +3,7 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./style.scss";
 
@@ -61,9 +62,6 @@ const Header = () => {
 	};
 
 	const navigationHandler = (type) => {
-		// if (type === "/") {
-		// 	navigate("/");
-		// }
 		if (type === "movie") {
 			navigate("explore/movie");
 		} else {
@@ -75,8 +73,10 @@ const Header = () => {
 	return (
 		<header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
 			<ContentWrapper>
-				<div className="logo" onClick={() => navigate(-1)}>
-					<img src={logo} alt="movix info logo" />
+				<div className="logo">
+					<Link to="/">
+						<img src={logo} alt="movix info logo" />
+					</Link>
 				</div>
 				<ul className="menuItems">
 					<li
