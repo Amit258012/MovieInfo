@@ -16,7 +16,7 @@ const SwitchTab = ({ data, onTabChange }) => {
 	return (
 		<div className="switchingTabs">
 			<div className="tabItems">
-				{data.map((tab, index) => (
+				{data?.map((tab, index) => (
 					<span
 						key={index}
 						className={`tabItem ${

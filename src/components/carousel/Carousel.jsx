@@ -19,7 +19,6 @@ const Carousel = ({ data, loading, endPoint, title }) => {
 	const carouselContainer = useRef();
 	const navigate = useNavigate();
 	const { url } = useSelector((state) => state.home);
-	// console.log(carouselContainer.current);
 	const navigation = (dir) => {
 		const container = carouselContainer.current;
 		console.log(container);
@@ -56,7 +55,7 @@ const Carousel = ({ data, loading, endPoint, title }) => {
 					className="carouselRightNav arrow"
 					onClick={() => navigation("right")}
 				/>
-				{!loading ? (
+				{!loading && data.length > 0 ? (
 					<div className="carouselItems" ref={carouselContainer}>
 						{data?.map((item) => {
 							const posterUrl = item.poster_path
@@ -68,7 +67,7 @@ const Carousel = ({ data, loading, endPoint, title }) => {
 									key={item.id}
 									onClick={() =>
 										navigate(
-											`/${item.media_type || endPoint}/${
+											`/${item?.media_type || endPoint}/${
 												item.id
 											}`
 										)
@@ -76,12 +75,12 @@ const Carousel = ({ data, loading, endPoint, title }) => {
 									<div className="posterBlock">
 										<Img src={posterUrl} />
 										<CircleRating
-											rating={item.vote_average.toFixed(
+											rating={item?.vote_average.toFixed(
 												1
 											)}
 										/>
 										<Genres
-											data={item.genre_ids.slice(0, 2)}
+											data={item?.genre_ids.slice(0, 2)}
 										/>
 									</div>
 									<div className="textBlock">

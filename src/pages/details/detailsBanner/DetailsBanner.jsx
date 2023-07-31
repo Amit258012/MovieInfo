@@ -42,18 +42,18 @@ const DetailsBanner = ({ video, crew }) => {
 					{!!data && (
 						<React.Fragment>
 							<div className="backdrop-img">
-								<Img src={url.backdrop + data.backdrop_path} />
+								<Img src={url.backdrop + data?.backdrop_path} />
 							</div>
 							<div className="opacity-layer"></div>
 							<ContentWrapper>
 								<div className="content">
 									<div className="left">
-										{data.poster_path ? (
+										{data?.poster_path ? (
 											<Img
 												className="posterImg"
 												src={
 													url.backdrop +
-													data.poster_path
+													data?.poster_path
 												}
 											/>
 										) : (
@@ -102,7 +102,7 @@ const DetailsBanner = ({ video, crew }) => {
 											</div>
 										</div>
 										<div className="info">
-											{data.status && (
+											{data?.status && (
 												<div className="infoItem">
 													<span className="text bold">
 														Status:{" "}
@@ -133,7 +133,7 @@ const DetailsBanner = ({ video, crew }) => {
 													</span>
 													<span className="text">
 														{toHoursAndMinutes(
-															data.runtime
+															data?.runtime
 														)}
 													</span>
 												</div>
