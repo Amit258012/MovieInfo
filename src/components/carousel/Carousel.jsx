@@ -55,7 +55,7 @@ const Carousel = ({ data, loading, endPoint, title }) => {
 					className="carouselRightNav arrow"
 					onClick={() => navigation("right")}
 				/>
-				{!loading && data.length > 0 ? (
+				{!loading && data?.length > 0 ? (
 					<div className="carouselItems" ref={carouselContainer}>
 						{data?.map((item) => {
 							const posterUrl = item.poster_path
