@@ -13,8 +13,11 @@ import Img from "../../../components/lazyLoadingImage/Img";
 import PosterFallback from "../../../assets/no-poster.png";
 
 import { PlayIcon } from "../Playbtn";
+import VideoPopup from "../../../components/videoPopup/VideoPopup";
 
 const DetailsBanner = ({ video, crew }) => {
+	const [show, setShow] = useState(false);
+	const [videoId, setVideoId] = useState(null);
 	const { mediaType, id } = useParams();
 	const { data, loading } = useFetch(`/${mediaType}/${id}`);
 
@@ -80,7 +83,10 @@ const DetailsBanner = ({ video, crew }) => {
 											/>
 											<div
 												className="playbtn"
-												onClick={() => {}}>
+												onClick={() => {
+													setShow(true);
+													setVideoId(video.key);
+												}}>
 												<PlayIcon />
 												<div className="text">
 													Watch Trailer
@@ -191,6 +197,12 @@ const DetailsBanner = ({ video, crew }) => {
 										)}
 									</div>
 								</div>
+								<VideoPopup
+									show={show}
+									setShow={setShow}
+									videoId={videoId}
+									setVideoId={setVideoId}
+								/>
 							</ContentWrapper>
 						</React.Fragment>
 					)}
