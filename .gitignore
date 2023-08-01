@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+style.css*
+index.css*
+mixins.css*
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
