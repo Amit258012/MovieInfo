@@ -14,8 +14,10 @@ const fetchDataFromApi = async (url, params) => {
 			headers,
 			params,
 		});
+		console.log(TMDB_TOKEN);
 		return data;
 	} catch (error) {
+		console.log("HI");
 		console.log(error);
 		return error;
 	}
